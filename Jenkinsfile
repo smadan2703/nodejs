@@ -8,8 +8,8 @@ node {
     def commitId = ""
     def commitmessage = ""    
     def server = Artifactory.server 'jfrog'
-    currentVersion = majorVersion+'.'+currentBuild.number
-    def configTag = appPrefix+'-'+currentVersion
+   // currentVersion = majorVersion+'.'+currentBuild.number
+    //def configTag = appPrefix+'-'+currentVersion
     
         stage(Prepare) {
             echo "Project to Build: ${project}"
