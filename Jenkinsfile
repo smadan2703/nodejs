@@ -5,7 +5,7 @@
 
 node {
     timestamps {
-    def appPrefix = madan
+    def appPrefix = "madan"
     def majorVersion = 1.0
     def currentVersion =""
     def commitId = ""
