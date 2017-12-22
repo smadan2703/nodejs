@@ -1,6 +1,6 @@
 //# !/usr/bin/env groovy
 
-def appName = madan;
+def appPrefix = madan
 def majorVersion = 1.0
 def currentVersion =""
 def commitId = ""
