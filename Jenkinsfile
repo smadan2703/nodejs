@@ -2,12 +2,12 @@
 
 node {
     timestamps {
-    def appPrefix = "madan"
-    def majorVersion = 1.0
-    def currentVersion =""
-    def commitId = ""
-    def commitmessage = ""    
-    def server = Artifactory.server 'jfrog'
+   // def appPrefix = "madan"
+    // def majorVersion = 1.0
+    // def currentVersion =""
+    // def commitId = ""
+    // def commitmessage = ""    
+    // def server = Artifactory.server 'jfrog'
    // currentVersion = majorVersion+'.'+currentBuild.number
     //def configTag = appPrefix+'-'+currentVersion
     
@@ -20,8 +20,8 @@ node {
         stage (Checkout){
             checkout scm
             sh "git rev-parse HEAD > .git/commit-id"
-            commitId = readFile('.git/commit-id')
-            commitmessage = readFile('.git/COMMIT_EDITMSG')
+           // commitId = readFile('.git/commit-id')
+            //  commitmessage = readFile('.git/COMMIT_EDITMSG')
         }
         stage(NodeJs) {
             sh 'npm install'
