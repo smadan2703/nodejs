@@ -1,4 +1,4 @@
-#!/usr/bin/env groovy
+//# !/usr/bin/env groovy
 
 def appName = config.applicationName;
 def majorVersion = 1.0
