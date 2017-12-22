@@ -1,7 +1,7 @@
 //# !/usr/bin/env groovy
 
 node {
-    timestamps {
+   // timestamps {
    // def appPrefix = "madan"
     // def majorVersion = 1.0
     // def currentVersion =""
@@ -31,5 +31,5 @@ node {
         //stage(deploy){
         
         //}
-    }
+    //}
 }
