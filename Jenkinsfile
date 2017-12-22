@@ -22,9 +22,9 @@ node {
 
         stage (Checkout){
             checkout scm
-            sh "git rev-parse HEAD > .git/commit-id"
-            commitId = readFile('.git/commit-id')
-            commitmessage = readFile('.git/COMMIT_EDITMSG')
+           // sh "git rev-parse HEAD > .git/commit-id"
+           // commitId = readFile('.git/commit-id')
+            //commitmessage = readFile('.git/COMMIT_EDITMSG')
         }
         stage(NodeJs) {
             sh 'npm install'
