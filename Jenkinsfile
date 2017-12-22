@@ -10,7 +10,7 @@ node {
     def currentVersion =""
     def commitId = ""
     def commitmessage = ""
-    def server = Artifactory.server jfrog
+    def server = Artifactory.server 'jfrog'
     currentVersion = majorVersion+'.'+currentBuild.number
     def configTag = appPrefix+'-'+currentVersion
     
