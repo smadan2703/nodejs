@@ -1,15 +1,15 @@
 //# !/usr/bin/env groovy
 
-def appPrefix = madan
-def majorVersion = 1.0
-def currentVersion =""
-def commitId = ""
-def commitmessage = ""
+
 
 
 node {
     timestamps {
-    
+    def appPrefix = madan
+    def majorVersion = 1.0
+    def currentVersion =""
+    def commitId = ""
+    def commitmessage = ""
     def server = Artifactory.server jfrog
     currentVersion = majorVersion+'.'+currentBuild.number
     def configTag = appPrefix+'-'+currentVersion
