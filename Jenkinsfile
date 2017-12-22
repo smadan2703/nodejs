@@ -30,7 +30,7 @@ node {
             sh 'rs run deploy -prod'
         }
         stage(Artifact){
-             def server = Artifactory.server ""
+        
             // Read the upload spec and upload files to Artifactory.
             def downloadSpec =
                     '''{
