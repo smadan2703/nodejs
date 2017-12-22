@@ -18,8 +18,9 @@ node {
         //}
 
         stage (code){
-           checkout scm
-           // sh "git rev-parse HEAD > .git/commit-id"
+           //checkout scm
+           checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/smadan2703/nodejs.git']]])
+           sh "git rev-parse HEAD > .git/commit-id"
            // commitId = readFile('.git/commit-id')
             //  commitmessage = readFile('.git/COMMIT_EDITMSG')
         }
