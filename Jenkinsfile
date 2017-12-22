@@ -1,6 +1,6 @@
 //# !/usr/bin/env groovy
 
-def appName = config.applicationName;
+def appName = madan;
 def majorVersion = 1.0
 def currentVersion =""
 def commitId = ""
@@ -22,9 +22,9 @@ node {
 
         stage (Checkout){
             checkout scm
-           // sh "git rev-parse HEAD > .git/commit-id"
-           // commitId = readFile('.git/commit-id')
-            //commitmessage = readFile('.git/COMMIT_EDITMSG')
+            sh "git rev-parse HEAD > .git/commit-id"
+            commitId = readFile('.git/commit-id')
+            commitmessage = readFile('.git/COMMIT_EDITMSG')
         }
         stage(NodeJs) {
             sh 'npm install'
