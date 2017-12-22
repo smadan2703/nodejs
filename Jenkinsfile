@@ -12,9 +12,9 @@ node {
     //def configTag = appPrefix+'-'+currentVersion
     
         stage(Prepare) {
-            echo "Project to Build: ${project}"
-            echo "Branch to Build: ${branch}"
-            echo "Env to Deploy: ${env}"
+          //  echo "Project to Build: ${project}"
+           // echo "Branch to Build: ${branch}"
+            //echo "Env to Deploy: ${env}"
         }
 
         stage (Checkout){
