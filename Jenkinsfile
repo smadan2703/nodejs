@@ -10,6 +10,7 @@ node {
     def server = Artifactory.server 'jfrog'
     currentVersion = majorVersion+'.'+currentBuild.number
     def configTag = appPrefix+'-'+currentVersion
+    def dmgiturl =  "https://github.com/smadan2703/nodejs.git"
     
        stage('Prepare') {
           // echo "Project to Build: ${project}"
@@ -21,8 +22,8 @@ node {
         }
 
         stage ('code'){
-           checkout scm
-          // checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/smadan2703/nodejs.git']]])
+          // checkout scm
+           checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: '$dmgiturl']]])
            sh "git rev-parse HEAD > .git/commit-id"
            commitId = readFile('.git/commit-id')
            //commitmessage = readFile('.git/COMMIT_EDITMSG')
