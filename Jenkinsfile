@@ -25,10 +25,11 @@ node {
            checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/smadan2703/nodejs.git']]])
            sh "git rev-parse HEAD > .git/commit-id"
            commitId = readFile('.git/commit-id')
-           commitmessage = readFile('.git/COMMIT_EDITMSG')
+           //commitmessage = readFile('.git/COMMIT_EDITMSG')
            sh 'whoami'
-            echo "commitid: ${commitId}"
-            echo "messa: ${commitmessage}"
+           echo "commitid: ${commitId}"
+           shortCommit = sh(returnStdout: true, script: "git log -n 1 --pretty=format:'%h'").trim()
+           echo "messa: ${shortCommit}"
         }
         stage('NodeJs') {
            sh 'npm install'
