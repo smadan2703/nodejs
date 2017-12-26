@@ -12,15 +12,17 @@ node {
     def configTag = appPrefix+'-'+currentVersion
     
        stage('Prepare') {
-           echo "Project to Build: ${project}"
-           echo "Branch to Build: ${branch}"
-            echo "Env to Deploy: ${env}"
+          // echo "Project to Build: ${project}"
+           echo "Project to Build: ${appPrefix}"
+          // echo "Branch to Build: ${branch}"
+           echo "Branch to Build: ${majorVersion}"
+           // echo "Env to Deploy: ${env}"
         }
 
         stage ('code'){
            checkout scm
           // checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/smadan2703/nodejs.git']]])
-           sh "git rev-parse HEAD > .git/commit-id"
+          // sh "git rev-parse HEAD > .git/commit-id"
           // commitId = readFile('.git/commit-id')
            // commitmessage = readFile('.git/COMMIT_EDITMSG')
            sh 'whoami'
