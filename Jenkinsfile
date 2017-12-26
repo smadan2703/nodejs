@@ -17,15 +17,18 @@ node {
           // echo "Branch to Build: ${branch}"
            echo "Branch to Build: ${majorVersion}"
            // echo "Env to Deploy: ${env}"
+           echo "ConfigTag: ${configTag}"
         }
 
         stage ('code'){
            //checkout scm
            checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/smadan2703/nodejs.git']]])
            sh "git rev-parse HEAD > .git/commit-id"
-          // commitId = readFile('.git/commit-id')
-           // commitmessage = readFile('.git/COMMIT_EDITMSG')
+           commitId = readFile('.git/commit-id')
+           commitmessage = readFile('.git/COMMIT_EDITMSG')
            sh 'whoami'
+            echo "commitid: ${commitId}"
+            echo "messa: ${commitmessage}"
         }
         stage('NodeJs') {
            sh 'npm install'
