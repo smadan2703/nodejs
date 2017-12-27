@@ -11,22 +11,25 @@ node {
     def configTag = appPrefix+'-'+currentVersion
 
         stage ('code'){
-           sh 'mkdir "${appPrefix}"'
-            sh 'cd ${appPrefix}'
-           checkout([$class: 'GitSCM', branches: [[name: 'refs/heads//master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'git@github.com:heroku/node-js-sample.git']]])
-           sh "git rev-parse HEAD > .git/commit-id"
+
+           dir ("$appPrefix") {
+                    checkout([$class: 'GitSCM', branches: [[name: 'refs/heads/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/heroku/node-js-sample.git']]])
+                    sh "git rev-parse HEAD > .git/commit-id"
+             } 
         }
 
         stage('Prepare') {
            echo "Project to Build: ${appPrefix}"
            echo "Env to Deploy: ${env}"
-           commitId = readFile('.git/commit-id')
+           commitId = readFile('"${appPrefix}"/.git/commit-id')
            echo "commitid: ${commitId}"
         }
 
         stage('Build') {
-           //sh 'ng build --prod'
-           sh 'npm install'
+          dir ("$appPrefix") {
+            sh 'npm install'
+        }
+
         }
         //stage(Publish){
         //}
