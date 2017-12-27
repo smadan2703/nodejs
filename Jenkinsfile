@@ -23,13 +23,16 @@ node {
         }
 
         stage('Build') {
-            sh 'npm install'
+            sh """ 
+                npm install
+                mkdir -p ${appPrefix}
+            """
         }
-        stage('Artifact'){
-            dir ("$appPrefix") {
+        //stage('Artifact'){
+         //   dir ("$appPrefix") {
                     sh 'cp -rf ../node_modules .'
-             } 
-        }
+           //  } 
+        //}
         //stage(deploy){
         
         //}
