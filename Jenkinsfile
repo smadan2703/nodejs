@@ -19,8 +19,9 @@ node {
         }
 
         stage('Prepare') {
-           echo "Project to Build: ${appPrefix}"
-           echo "Env to Deploy: ${env}"
+           echo -e "Project to Build: ${appPrefix} /n Env to Deploy: ${env}" 
+           //echo "Project to Build: ${appPrefix}"
+           //echo "Env to Deploy: ${env}"
            commitId = readFile('/tmp/commit-id')
            echo "commitid: ${commitId}"
         }
