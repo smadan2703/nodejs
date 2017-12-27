@@ -27,6 +27,7 @@ node {
                 npm install
                 mkdir -p ${appPrefix}
                 cp -rf public node_modules ${appPrefix}
+                tar -zcf ${appPrefix}-${configTag}.tar.gz ${appPrefix}
             """
         }
         // cp dist Server_Code/node_modules ${appPrefix}
