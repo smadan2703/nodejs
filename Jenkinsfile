@@ -33,8 +33,11 @@ node {
         //}
 
         }
-        stage(Artifact){
-            sh 'ls -al'
+        stage('Artifact'){
+            dir ("$appPrefix") {
+                    checkout([$class: 'GitSCM', branches: [[name: 'refs/heads/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/heroku/node-js-sample.git']]])
+                   // sh "git rev-parse HEAD > /tmp/commit-id"
+             } 
         }
         //stage(deploy){
         
