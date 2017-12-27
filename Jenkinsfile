@@ -21,7 +21,7 @@ node {
         stage('Prepare') {
            echo "Project to Build: ${appPrefix}"
            echo "Env to Deploy: ${env}"
-           commitId = readFile('"${appPrefix}"/.git/commit-id')
+           commitId = readFile('${appPrefix}/.git/commit-id')
            echo "commitid: ${commitId}"
         }
 
