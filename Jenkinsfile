@@ -26,12 +26,12 @@ node {
             sh """ 
                 npm install
                 mkdir -p ${appPrefix}
+                cp public node_modules ${appPrefix}
             """
         }
+        // cp dist Server_Code/node_modules ${appPrefix}
         //stage('Artifact'){
-         //   dir ("$appPrefix") {
-                    sh 'cp -rf ../node_modules .'
-           //  } 
+         
         //}
         //stage(deploy){
         
