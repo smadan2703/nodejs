@@ -29,6 +29,7 @@ node {
                 cp -rf public node_modules ${appPrefix}
                 tar -zcf ${configTag}.tar.gz ${appPrefix}
             """
+            sh 'ls -al'
         }
         // cp dist Server_Code/node_modules ${appPrefix}
         //stage('Artifact'){
