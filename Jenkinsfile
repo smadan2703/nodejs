@@ -1,7 +1,7 @@
 node {
     timestamps {
     def appPrefix = "Digital-Mortgage"
-    def env = SIT
+    def env = "SIT"
     def majorVersion = 1.0
     def currentVersion =""
     def commitId = ""
