@@ -11,7 +11,8 @@ node {
     def configTag = appPrefix+'-'+currentVersion
 
         stage ('code'){
-           sh 'mkdir ${Digital-Mortgage}'  
+           sh 'mkdir ${appPrefix}'  
+            sh 'cd ${appPrefix}'
            checkout([$class: 'GitSCM', branches: [[name: 'refs/heads//master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'git@github.com:heroku/node-js-sample.git']]])
            sh "git rev-parse HEAD > .git/commit-id"
         }
@@ -24,8 +25,8 @@ node {
         }
 
         stage('Build') {
-           sh 'ng build --prod'
-           sh ''
+           //sh 'ng build --prod'
+           sh 'npm install'
         }
         //stage(Publish){
         //}
