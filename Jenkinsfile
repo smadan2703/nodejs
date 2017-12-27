@@ -11,32 +11,23 @@ node {
     def configTag = appPrefix+'-'+currentVersion
 
         stage ('code'){
-
-           //dir ("$appPrefix") {
                     checkout([$class: 'GitSCM', branches: [[name: 'refs/heads/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/heroku/node-js-sample.git']]])
-                    sh "git rev-parse HEAD > /tmp/commit-id"
-             //} 
+                    sh "git rev-parse HEAD > .git/commit-id"
         }
 
         stage('Prepare') { 
            echo "Project to Build: ${appPrefix}"
            echo "Env to Deploy: ${env}"
-           commitId = readFile('/tmp/commit-id')
+           commitId = readFile('.git/commit-id')
            echo "commitid: ${commitId}"
         }
 
         stage('Build') {
-          //dir ("$appPrefix") {
-            //sh 'ng build --prod'
             sh 'npm install'
-              
-        //}
-
         }
         stage('Artifact'){
             dir ("$appPrefix") {
-                    checkout([$class: 'GitSCM', branches: [[name: 'refs/heads/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/heroku/node-js-sample.git']]])
-                   // sh "git rev-parse HEAD > /tmp/commit-id"
+                    sh 'cp ../node_modules .'
              } 
         }
         //stage(deploy){
