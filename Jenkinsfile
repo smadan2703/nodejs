@@ -27,7 +27,7 @@ node {
         }
         stage('Artifact'){
             dir ("$appPrefix") {
-                    sh 'cp ../node_modules .'
+                    sh 'cp -rf ../node_modules .'
              } 
         }
         //stage(deploy){
