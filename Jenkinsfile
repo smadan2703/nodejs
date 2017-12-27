@@ -14,14 +14,14 @@ node {
 
            dir ("$appPrefix") {
                     checkout([$class: 'GitSCM', branches: [[name: 'refs/heads/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/heroku/node-js-sample.git']]])
-                    sh "git rev-parse HEAD > .git/commit-id"
+                    sh "git rev-parse HEAD > ~/commit-id"
              } 
         }
 
         stage('Prepare') {
            echo "Project to Build: ${appPrefix}"
            echo "Env to Deploy: ${env}"
-           commitId = readFile('${appPrefix}/.git/commit-id')
+           commitId = readFile('~/commit-id')
            echo "commitid: ${commitId}"
         }
 
