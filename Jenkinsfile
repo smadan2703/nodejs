@@ -26,7 +26,7 @@ node {
             sh """ 
                 npm install
                 mkdir -p ${appPrefix}
-                cp public node_modules ${appPrefix}
+                cp -rf public node_modules ${appPrefix}
             """
         }
         // cp dist Server_Code/node_modules ${appPrefix}
