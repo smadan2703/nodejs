@@ -12,28 +12,30 @@ node {
 
         stage ('code'){
 
-           dir ("$appPrefix") {
+           //dir ("$appPrefix") {
                     checkout([$class: 'GitSCM', branches: [[name: 'refs/heads/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/heroku/node-js-sample.git']]])
                     sh "git rev-parse HEAD > /tmp/commit-id"
-             } 
+             //} 
         }
 
-        stage('Prepare') {
-           echo -e "Project to Build: ${appPrefix} /n Env to Deploy: ${env}" 
-           //echo "Project to Build: ${appPrefix}"
-           //echo "Env to Deploy: ${env}"
+        stage('Prepare') { 
+           echo "Project to Build: ${appPrefix}"
+           echo "Env to Deploy: ${env}"
            commitId = readFile('/tmp/commit-id')
            echo "commitid: ${commitId}"
         }
 
         stage('Build') {
-          dir ("$appPrefix") {
+          //dir ("$appPrefix") {
+            //sh 'ng build --prod'
             sh 'npm install'
-        }
+              
+        //}
 
         }
-        //stage(Publish){
-        //}
+        stage(Artifact){
+            sh 'ls -al'
+        }
         //stage(deploy){
         
         //}
