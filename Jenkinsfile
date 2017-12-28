@@ -15,15 +15,14 @@ node {
                     //checkout([$class: 'GitSCM', branches: [[name: 'refs/heads/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/heroku/node-js-sample.git']]])
             checkout scm        
             sh "git rev-parse HEAD > .git/commit-id"
-            
+            commitId = readFile('.git/commit-id') 
         }
 
         stage('Prepare') { 
-           commitId = readFile('.git/commit-id') 
+           
            echo "Project to Build: ${appPrefix}"
            echo "Env to Deploy: ${envmadan}"
            echo "commitid: ${commitId}"
-           echo "branch-name: ${barn}"
         }
 
         stage('Build') {
