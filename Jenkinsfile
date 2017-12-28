@@ -36,7 +36,7 @@ node {
         stage('Artifact') {
             if ("${GIT_BRANCH}" == 'SIT'|| "${GIT_BRANCH}" == 'master' || "${GIT_BRANCH}" == 'UAT') {
                     echo "${branch}"
-            } elseif ("${GIT_BRANCH}" == 'HEAD') {
+            } ifelse ("${GIT_BRANCH}" == 'HEAD') {
                     echo "From elseif branch"
         }
             else { 
