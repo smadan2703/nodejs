@@ -36,9 +36,10 @@ node {
         stage('Artifact') {
             if ("${GIT_BRANCH}" == 'SIT'|| "${GIT_BRANCH}" == 'master' || "${GIT_BRANCH}" == 'UAT') {
                     echo "${branch}"
-            } else {
-            echo "I will upload articats to Jfrog"
+            } elseif("${GIT_BRANCH}" == 'HEAD') {
+        echo "From elseif branch"
         }
+            else{ echo "I am out"}
     }
         
     }
