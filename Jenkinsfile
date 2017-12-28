@@ -47,3 +47,33 @@ node {
         
     }
 }
+
+
+
+
+
+
+
+
+
+node {
+   def pat = "/Users/devops/Desktop"
+   def project = "Andriod"
+   def version = "1.0.1"
+   def con = "HLBKM"
+   def envi = "PROD"
+   def jf = "localj"
+   def server = Artifactory.server "${jf}"
+   def uploadSpec = """{
+       "files" : [ {
+           "pattern" : "${pat}/${project}-${version}.tar.gz",
+           "target" : "HLBB/${con}/${project}/${envi}/${version}/"
+       }
+       ]
+   }"""
+   stage('Preparation') { // for display purposes
+     
+    server.upload(uploadSpec)
+   }
+  
+}
