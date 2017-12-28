@@ -25,13 +25,13 @@ node {
 
         stage('Build') {
             sh """ 
+              ls
+            """
+        }
               //  npm install
               //  ng build --prod
               //  tar -zcf $configTag}.tar.gz dist
-              ls -al
-            """
-        }
-
+        
         stage('Artifact') {
              if (env.BRANCH_NAME == 'SIT'|| env.BRANCH_NAME == 'master' || env.BRANCH_NAME == 'UAT') {
                     echo "${branch}"
