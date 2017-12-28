@@ -36,6 +36,7 @@ node {
         stage('Artifact') {
             if ("${gitBranch}" == 'SIT'|| "${gitBranch}" == 'master' || "${gitBranch}" == 'UAT') {
                     def server = Artifactory.server 'localj'
+                    def buildInfo = Artifactory.newBuildInfo() 
                     def uploadSpec = """{
                              "files" : [ {
                                             "pattern" : "${configTag}.tar.gz",
@@ -43,7 +44,9 @@ node {
                                       } ]
                         }"""
                     
-                    server.upload(uploadSpec)
+                    //server.upload(uploadSpec)
+                    server.upload spec: uploadSpec, buildInfo: buildInfo
+                    server.publishBuildInfo buildInfo
                 } 
 
             else { 
