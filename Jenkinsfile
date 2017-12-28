@@ -3,7 +3,7 @@ node {
     def appPrefix = "Digital-Mortgage"
     def envmadan = "SIT"
     def majorVersion = 1.0
-    def artifacts = "/opt/artifacts/"
+    def artifacts = "/Users/devops/Jenkins/artifacts/"
     def currentVersion =""
     def commitId = ""
     def commitmessage = ""    
@@ -12,17 +12,17 @@ node {
     def configTag = appPrefix+'-'+currentVersion
 
         stage ('code'){
-                    checkout([$class: 'GitSCM', branches: [[name: 'refs/heads/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/heroku/node-js-sample.git']]])
-                    sh "git rev-parse HEAD > .git/commit-id"
+                    //checkout([$class: 'GitSCM', branches: [[name: 'refs/heads/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/heroku/node-js-sample.git']]])
+            checkout scm        
+            sh "git rev-parse HEAD > .git/commit-id"
+            commitId = readFile('.git/commit-id')
         }
 
         stage('Prepare') { 
            echo "Project to Build: ${appPrefix}"
            echo "Env to Deploy: ${envmadan}"
-           commitId = readFile('.git/commit-id')
            echo "commitid: ${commitId}"
-           def barn = env.BRANCH_NAME
-            echo "branch-name: ${barn}"
+           echo "branch-name: ${barn}"
         }
 
         stage('Build') {
