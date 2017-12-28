@@ -5,7 +5,8 @@ node {
     def currentVersion =""
     def commitId = ""
     def commitmessage = ""    
-    def branch = env.BRANCH_NAME
+   // def branch = env.BRANCH_NAME
+    def GIT_BRANCH = env.BRANCH_NAME
     def server = Artifactory.server 'jfrog'
     currentVersion = majorVersion+'.'+currentBuild.number
     def configTag = appPrefix+'-'+currentVersion
@@ -14,7 +15,7 @@ node {
             checkout scm        
             sh "git rev-parse HEAD > .git/commit-id"
             commitId = readFile('.git/commit-id') 
-            GIT_BRANCH = sh(returnStdout: true, script: 'git rev-parse --abbrev-ref HEAD').trim()
+           // GIT_BRANCH = sh(returnStdout: true, script: 'git rev-parse --abbrev-ref HEAD').trim()
         }
 
         stage('Prepare') { 
