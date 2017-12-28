@@ -1,7 +1,7 @@
 node {
     timestamps {
     def appPrefix = "Digital-Mortgage"
-    def env = "SIT"
+    def envmadan = "SIT"
     def majorVersion = 1.0
     def currentVersion =""
     def commitId = ""
@@ -17,7 +17,7 @@ node {
 
         stage('Prepare') { 
            echo "Project to Build: ${appPrefix}"
-           echo "Env to Deploy: ${env}"
+           echo "Env to Deploy: ${envmadan}"
            commitId = readFile('.git/commit-id')
            echo "commitid: ${commitId}"
         }
