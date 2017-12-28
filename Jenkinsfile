@@ -20,6 +20,8 @@ node {
            echo "Env to Deploy: ${envmadan}"
            commitId = readFile('.git/commit-id')
            echo "commitid: ${commitId}"
+           def barn = env.BRANCH_NAME
+            echo "branch-name: ${barn}"
         }
 
         stage('Build') {
