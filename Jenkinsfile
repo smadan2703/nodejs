@@ -14,12 +14,13 @@ node {
             checkout scm        
             sh "git rev-parse HEAD > .git/commit-id"
             commitId = readFile('.git/commit-id') 
+            GIT_BRANCH = sh(returnStdout: true, script: 'git rev-parse --abbrev-ref HEAD').trim()
         }
 
         stage('Prepare') { 
            
            echo "Project to Build: ${appPrefix}"
-           echo "Env to Deploy: ${branch}"
+           echo "Env to Deploy: ${GIT_BRANCH}"
            echo "commitid: ${commitId}"
         }
 
@@ -33,7 +34,7 @@ node {
               //  tar -zcf $configTag}.tar.gz dist
         
         stage('Artifact') {
-             if (env.BRANCH_NAME == 'SIT'|| env.BRANCH_NAME == 'master' || env.BRANCH_NAME == 'UAT') {
+            if ("${GIT_BRANCH}" == 'SIT'|| "${GIT_BRANCH}" == 'master' || "${GIT_BRANCH}" == 'UAT') {
                     echo "${branch}"
             } else {
             echo "I will upload articats to Jfrog"
