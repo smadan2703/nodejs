@@ -3,6 +3,7 @@ node {
     def appPrefix = "Digital-Mortgage"
     def envmadan = "SIT"
     def majorVersion = 1.0
+    def artifacts = "/opt/artifacts/"
     def currentVersion =""
     def commitId = ""
     def commitmessage = ""    
@@ -33,11 +34,13 @@ node {
             """
             sh 'ls -al'
         }
-        stage('Example') {
-        if (env.BRANCH_NAME == 'master') {
-            echo 'I only execute on the master branch'
+        stage('Artifact') {
+        if (env.BRANCH_NAME == 'SIT') {
+            sh """
+                mv ${configTag}.tar.gz $artifacts
+            """
         } else {
-            echo 'I execute elsewhere'
+            echo "I will upload articats to Jfrog"
         }
     }
         // cp dist Server_Code/node_modules ${appPrefix}
