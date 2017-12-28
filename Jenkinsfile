@@ -31,6 +31,13 @@ node {
             """
             sh 'ls -al'
         }
+        stage('Example') {
+        if (env.BRANCH_NAME == 'master') {
+            echo 'I only execute on the master branch'
+        } else {
+            echo 'I execute elsewhere'
+        }
+    }
         // cp dist Server_Code/node_modules ${appPrefix}
         //stage('Artifact'){
          
