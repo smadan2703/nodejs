@@ -25,10 +25,10 @@ node {
 
         stage('Build') {
             sh """ 
-              ls
-              #  npm install
-              //  ng build --prod
-              //  tar -zcf ${configTag}.tar.gz dist
+               # npm install
+               # ng build --prod
+               # tar -zcf ${configTag}.tar.gz dist
+               tar -zcf ${configTag}.tar.gz node_modules
             """
         }
 
